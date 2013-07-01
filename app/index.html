@@ -6,7 +6,47 @@
 	<!-- styled using zurb foundation -->
   <link rel="stylesheet" href="css/app.css"/>
 </head>
-<body>
+<body ng-app='todo'>
+	<div ng-controller='mainCtrl'>
+		<div class='row'>
+			<div class='large-9 columns centered'>
+				<h2>Enter A Task</h2>
+				<form ng-submit='addTask()'>
+					<div class='row'>
+						<div class='large-7 columns'>
+							<input type='text' placeholder='enter a task' ng-model='task.name' required/>
+						</div>
+						<div class='large-5 columns'>
+							<input type='submit' class='large-3 columns blue button' value='+ Task' />
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<div class='row'>
+			<div class='large-6 columns'>
+				<h3>Edit Tasks</h3>
+				 <ul>
+					 <li ng-repeat='t in tasks'>
+						 <input type='text' ng-model='t.name' />
+					 </li>
+				 </ul>
+			</div>
+			<div class='large-6 columns'>
+				<h3>Complete Tasks</h3>
+				<ul>
+					<li ng-repeat='t in tasks'>
+						<input type='checkbox' value='t.name' ng-model='t.complete' />
+						<span ng-class='{done: t.complete}'>{{t.name}}</span>
+					</li>
+			</div>
+		</div>
+
+	</div>
+
+
+
 
   <script src="lib/angular/angular.js"></script>
 	<!--<script src="lib/angular/angular-resource.js"></script>-->
