@@ -25,6 +25,12 @@
 		</div>
 
 		<div class='row'>
+			<div class='large-12 columns'>
+				<span>You have completed {{tasksCompleted() }} / {{tasks.length}} tasks </span>
+				<percentage complete='tasksCompleted()' total='tasks.length'></percentage>
+			</div>
+		</div>
+		<div class='row'>
 			<div class='large-6 columns'>
 				<h3>Edit Tasks</h3>
 				 <ul>

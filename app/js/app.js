@@ -1,6 +1,6 @@
-todo = angular.module('todo', []);
+app = angular.module('todo', []);
 
-todo.controller('mainCtrl', function($scope) {
+app.controller('mainCtrl', function($scope) {
 	$scope.task = {
 		name : '',
 		complete: false
@@ -16,4 +16,30 @@ todo.controller('mainCtrl', function($scope) {
 		};
 	}
 
+	$scope.tasksCompleted = function() {
+		return _.filter($scope.tasks, function(task) {
+			return task.complete;
+		}).length;
+	}
+
+});
+
+app.directive('percentage', function() {
+	return {
+		restrict : 'E',
+		templateUrl : 'templates/percentage.html',
+		scope: {
+			complete : '=',
+			total: '='
+		},
+		controller: function($scope) {
+			$scope.getPercentage = function() {
+				if($scope.total == 0) {
+					return 0;
+				}
+				
+				return ($scope.complete / $scope.total) * 100;
+			}
+		}
+	};
 });
